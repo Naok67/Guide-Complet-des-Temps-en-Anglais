@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Complet des Temps en Anglais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: black;
+        }
+        .section {
+            display: none;
+            margin: 20px 0;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .table, .table th, .table td {
+            border: 1px solid black;
+        }
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+        }
+        .nav-button {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        .nav-button:hover {
+            background: #0056b3;
+        }
+        .exercise {
+            margin: 20px 0;
+        }
+        .exercise p {
+            font-size: 18px;
+        }
+        .answer-button {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .answer-button:hover {
+            background: #218838;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function generateExercise() {
+            const exercises = [
+                {
+                    question: "Complétez la phrase : I ___ (play) football yesterday.",
+                    answer: "played"
+                },
+                {
+                    question: "Complétez la phrase : She ___ (eat) dinner when the phone rang.",
+                    answer: "was eating"
+                },
+                {
+                    question: "Complétez la phrase : We ___ (finish) our homework.",
+                    answer: "have finished"
+                },
+                {
+                    question: "Complétez la phrase : They ___ (not like) the movie last night.",
+                    answer: "did not like"
+                }
+            ];
+
+            // Sélectionne un exercice au hasard
+            const randomIndex = Math.floor(Math.random() * exercises.length);
+            const exercise = exercises[randomIndex];
+
+            document.getElementById('exercise-question').textContent = exercise.question;
+            document.getElementById('correct-answer').textContent = exercise.answer;
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('user-answer').value.trim().toLowerCase();
+            const correctAnswer = document.getElementById('correct-answer').textContent.toLowerCase();
+            if (userAnswer === correctAnswer) {
+                alert("Correct ! Bien joué.");
+            } else {
+                alert("Dommage, la bonne réponse était : " + correctAnswer);
+            }
+            generateExercise(); // Générer un nouvel exercice
+        }
+    </script>
+</head>
+<body>
+    <h1>Guide Complet des Temps en Anglais</h1>
+    <div class="container">
+        <button class="nav-button" onclick="showSection('past-simple')">Past Simple</button>
+        <button class="nav-button" onclick="showSection('past-continuous')">Past Continuous</button>
+        <button class="nav-button" onclick="showSection('present-perfect')">Present Perfect</button>
+        <button class="nav-button" onclick="showSection('exercises')">Exercices</button>
+        
+        <div id="past-simple" class="section" style="display:block;">
+            <h2>Past Simple</h2>
+            <p>Utilisé pour des actions terminées dans le passé. Ex: "I watched a movie last night."</p>
+            <table class="table">
+                <tr><th>Affirmatif</th><th>Négatif</th><th>Interrogatif</th></tr>
+                <tr><td>I played</td><td>I did not play</td><td>Did I play?</td></tr>
+            </table>
+        </div>
+        
+        <div id="past-continuous" class="section">
+            <h2>Past Continuous</h2>
+            <p>Utilisé pour des actions en cours à un moment précis du passé. Ex: "I was reading when the phone rang."</p>
+            <table class="table">
+                <tr><th>Affirmatif</th><th>Négatif</th><th>Interrogatif</th></tr>
+                <tr><td>I was playing</td><td>I was not playing</td><td>Was I playing?</td></tr>
+            </table>
+        </div>
+        
+        <div id="present-perfect" class="section">
+            <h2>Present Perfect</h2>
+            <p>Utilisé pour une action passée avec un lien avec le présent. Ex: "I have finished my homework."</p>
+            <table class="table">
+                <tr><th>Affirmatif</th><th>Négatif</th><th>Interrogatif</th></tr>
+                <tr><td>I have played</td><td>I have not played</td><td>Have I played?</td></tr>
+            </table>
+        </div>
+        
+        <div id="exercises" class="section">
+            <h2>Exercices</h2>
+            <p>Testez vos connaissances avec des exercices interactifs !</p>
+            <div class="exercise">
+                <p id="exercise-question"></p>
+                <input type="text" id="user-answer" placeholder="Entrez votre réponse...">
+                <button class="answer-button" onclick="checkAnswer()">Vérifier la réponse</button>
+                <p style="display:none;" id="correct-answer"></p>
+            </div>
+            <button class="nav-button" onclick="generateExercise()">Nouvel exercice</button>
+        </div>
+    </div>
+
+    <script>
+        // Générer un exercice aléatoire au chargement de la page
+        generateExercise();
+    </script>
+</body>
+</html>
